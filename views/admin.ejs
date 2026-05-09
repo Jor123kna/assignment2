@@ -1,0 +1,34 @@
+<%- include("templates/header") %>
+
+<div class="container my-5">
+    <div class="text-center mb-4">
+        <h1>Admin Page</h1>
+        <p class="lead">Manage user roles</p>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>User Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% users.forEach(function(user) { %>
+                    <%- include("templates/users", { user: user }) %>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4">
+        <a href="/" class="btn btn-secondary">Back Home</a>
+        <a href="/logout" class="btn btn-outline-danger">Logout</a>
+    </div>
+</div>
+
+<%- include("templates/footer") %>

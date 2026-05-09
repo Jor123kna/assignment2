@@ -6,7 +6,7 @@
         <div class="card shadow-sm mt-5">
             <div class="card-body p-4">
 
-                <h1 class="h3 mb-4 text-center">Log in</h1>
+                <h1 class="h3 mb-4 text-center">Create Account</h1>
 
                 <% if (typeof message !== "undefined") { %>
                     <div class="alert alert-danger">
@@ -14,7 +14,19 @@
                     </div>
                 <% } %>
 
-                <form action="/login" method="POST">
+                <form action="/signup" method="POST">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="name" 
+                            name="name" 
+                            placeholder="Enter your name"
+                            required
+                        >
+                    </div>
+
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address</label>
                         <input 
@@ -40,13 +52,13 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100">
-                        Log in
+                        Sign up
                     </button>
                 </form>
 
                 <p class="text-center mt-3 mb-0">
-                    Don’t have an account?
-                    <a href="/signup">Sign up</a>
+                    Already have an account?
+                    <a href="/login">Log in</a>
                 </p>
 
             </div>
