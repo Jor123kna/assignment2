@@ -74,7 +74,7 @@ app.get('/', (req, res) => {
 });
 
 // SIGNUP PAGE
-app.get('/signup', (req, res) => {
+app.get('/signup', validateSession, (req, res) => {
     res.render("signup");
 });
 
