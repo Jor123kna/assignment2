@@ -265,6 +265,7 @@ app.get('/logout', (req, res) => {
             return res.send("Error logging out");
         }
 
+        res.clearCookie("connect.sid");
         res.redirect("/");
     });
 });
