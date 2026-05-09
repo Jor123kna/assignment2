@@ -64,6 +64,14 @@ const requireAdmin = (req, res, next) => {
     next();
 };
 
+const validateNoSession = (req, res, next) => {
+    if (req.session.userId) {
+        return res.redirect("/members");
+    }
+
+    next();
+}
+
 // HOME PAGE
 app.get('/', (req, res) => {
     res.render('index', {
@@ -74,12 +82,12 @@ app.get('/', (req, res) => {
 });
 
 // SIGNUP PAGE
-app.get('/signup', validateSession, (req, res) => {
+app.get('/signup', validateNoSession, (req, res) => {
     res.render("signup");
 });
 
 // LOGIN PAGE
-app.get('/login', (req, res) => {
+app.get('/login', validateNoSession, (req, res) => {
     res.render("login");
 });
 
