@@ -249,7 +249,19 @@ app.get('/demote/:id', validateSession, requireAdmin, async (req, res) => {
             { $set: { isAdmin: false } }
         );
 
-        res.redirect('/admin');
+        if (req.session.userId.toString() === req.params.id) {
+            req.session.destroy((err) => {
+                if (err) {
+                    console.error(err);
+                    return res.send("Error ending session");
+                }
+
+                res.clearCookie("connect.sid");
+                return res.redirect("/login");
+            });
+        } else {
+            res.redirect('/admin');
+        }
 
     } catch (error) {
         console.error(error);
