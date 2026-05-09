@@ -82,8 +82,8 @@ app.get('/', (req, res) => {
 });
 
 // SIGNUP PAGE
-app.get('/signup', validateNoSession, (req, res) => {
-    res.render("signup");
+app.get('/signUp', validateNoSession, (req, res) => {
+    res.render("signUp");
 });
 
 // LOGIN PAGE
@@ -92,7 +92,7 @@ app.get('/login', validateNoSession, (req, res) => {
 });
 
 // SIGNUP POST
-app.post('/signup', async (req, res) => {
+app.post('/signUp', async (req, res) => {
     try {
         const schema = Joi.object({
             name: Joi.string().max(50).required(),
@@ -103,7 +103,7 @@ app.post('/signup', async (req, res) => {
         const validationResult = schema.validate(req.body);
 
         if (validationResult.error) {
-            return res.render("signup", {
+            return res.render("signUp", {
                 message: "Please provide a valid name, email, and password."
             });
         }
@@ -128,7 +128,7 @@ app.post('/signup', async (req, res) => {
     } catch (error) {
         console.error(error);
 
-        res.render("signup", {
+        res.render("signUp", {
             message: "Error adding user. This email may already be in use."
         });
     }
